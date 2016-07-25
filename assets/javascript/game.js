@@ -4,7 +4,7 @@ $(document).ready(function () {
 	characterChosen = false;
 	enemyChosen = false;
 	
-	var attacker, defender, 
+	var attacker, defender;
 
 	
 	var char = {
