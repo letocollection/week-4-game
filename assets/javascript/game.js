@@ -1,4 +1,11 @@
 $(document).ready(function () {
+
+	
+	characterChosen = false;
+	enemyChosen = false;
+	
+	var attacker, defender, 
+
 	
 	var char = {
 		pikachu: {
@@ -21,13 +28,73 @@ $(document).ready(function () {
 		health: 180,
 		counter: 23
 		}	
+	
 	}
 
 	$('#char1').prepend('<img id="pikachu" src="assets/images/pikachu.png">');
 	$('#char2').prepend('<img id="charmander" src="assets/images/charmander.png">');
 	$('#char3').prepend('<img id="squirtle" src="assets/images/squirtle.png">');
 	$('#char4').prepend('<img id="mew" src="assets/images/mew.png">');
-})
+
+	// $('.pokemon').on('click', function () {
+
+		$('#char1').on('click', function(){
+			$("#char1").appendTo("#chosen");
+			attacker = 'pikachu';
+			console.log("attacker")
+			characterChosen = true;})
+
+		$('#char2').on('click', function(){
+			$("#char2").appendTo("#chosen");
+			characterChosen = true;})	
+
+		$('#char3').on('click', function(){
+			$("#char3").appendTo("#chosen");
+			characterChosen = true;})
+
+		$('#char4').on('click', function(){
+			$("#char4").appendTo("#chosen");
+			characterChosen = true;})	
+
+	// });	
+	$('.pokemon').on('click',function (){
+		if(characterChosen = true) {
+			$('#char1').on('click', function(){
+				$("#char1").appendTo("#enemy");
+				enemyChosen = true;})
+
+			$('#char2').on('click', function(){
+				$("#char2").appendTo("#enemy");
+				enemyChosen = true;})	
+
+			$('#char3').on('click', function(){
+				$("#char3").appendTo("#enemy");
+				enemyChosen = true;})
+
+			$('#char4').on('click', function(){
+				$("#char4").appendTo("#enemy");
+				enemyChosen = true;})	
+
+		}
+	})
+
+		// if (characterChosen = true) 	
+
+
+
+
+
+		// else if ('#char2') {$('#char2').appendTo("#chosen");}
+		// else if ('#char3') {$('#char3').appendTo("#chosen");}
+		// else {$('#char4').appendTo("#chosen");}
+		// // $("#char1").appendTo("#chosen");
+		// characterChosen = true;
+
+
+
+	})
+
+	
 // var opponentsBeat = [];
 
 
