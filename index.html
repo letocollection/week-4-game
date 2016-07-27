@@ -2,9 +2,12 @@
 <html lang ="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Hangman</title>
+		<title>Pokemon RPG Battle!</title>
+
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 		<script src="https://code.jquery.com/jquery.js"></script>
@@ -15,9 +18,12 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="text-center"><strong>Pokemon RPG</strong></h1>
-			<div id="message"></div>
+			<h5 id="message" class="text-center"></h5>
+			<button id="restartGame" class="btn btn-primary center-block">Play Again</button>
 		</div>	
+		
 		<div class="row" id="available">
+			<h2 id="availablecharacters">Available Characters</h2>
 			<div class="pokemon col-md-3" id="char1">
 			</div>
 			<div class="pokemon col-md-3" id="char2">
@@ -28,16 +34,40 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="character col-lg-6" id="chosen">
+			
+			<div class="character col-md-4" id="chosen">
 				<h2>Your Character</h2>
+				<div id="yourcharacter"></div>
+				
 				<h3 id="chosenstatus"></h3>
 			</div>
-			<div class="challenger col-lg-6" id="enemy">
-				<h2>Your Challenger</h2>
+			
+			<div class="col-md-4">
+				<button id="attack_button" class="btn btn-danger center-block">Attack!</button>
+				<p id="playbyplay"></p>
+				
+			</div>	
+							
+			<div class="challenger col-md-4" id="enemy">
+				<h2 id="challengerText">Your Challenger</h2>
+				<div id="enemycharacter"></div>
+				
 				<h3 id ="challengerstatus"></h3>
 			</div>
 		</div>	
-		<button id="attack_button">Attack!</button>
+
+		<div class="row">
+			<div class = "col-md-6">
+				<p id = "notification1"></p>
+			</div>	
+			<div class = "col-md-6">
+				<p id="notification2"></p>
+			</div>	
+
+
+		</div>
+		
+
 	</div>
 		<script type="text/javascript" src="assets/javascript/game.js" ></script>
 	</div>	

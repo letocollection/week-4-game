@@ -11,28 +11,29 @@ $(document).ready(function () {
 		pikachu: {
 		attacking: 12,
 		attackBonus: 12,
-		health: 500,
-		counter: 23
+		health: 150,
+		counter: 15
 		},
 
 		charmander: {
-		attacking: 12,
-		attackBonus: 12,
+		attacking: 35,
+		attackBonus: 35,
 		health: 100,
-		counter: 23
+		counter: 15
 
 		},
 		squirtle: {
-		attacking: 12,
-		attackBonus: 12,
+		attacking: 20,
+		attackBonus: 15,
 		health: 150,
-		counter: 23
+		counter: 16
 		},
+
 		mew: {
 		attacking: 12,
-		attackBonus: 12,
-		health: 180,
-		counter: 23
+		attackBonus: 25,
+		health: 150,
+		counter: 18
 		}	
 	
 
@@ -45,22 +46,24 @@ $(document).ready(function () {
 	
 		
 		
-	// });	
+	//If character and enemy have not been chosen, pick a character from available pokemon by clicking on it. 	
 	$('#available .pokemon').on('click',function (){
+
+
 		if($(this).data("chosen")) {return;}
 		
-
+		//If you picked a character, but not an enemy, make the click be an enemy. 
 		if(characterChosen == true && enemyChosen == false){
 			$(this).data("chosen", true);
-			$(this).appendTo("#enemy");
+			$(this).appendTo("#enemycharacter");
 			
 			enemyChosen = true;
 			
 		}
-
+		//If you havent picked a character yet, make sure you pick a character. 
 		else if (characterChosen == false) {
 			$(this).data("chosen", true);
-			$(this).appendTo("#chosen");
+			$(this).appendTo("#yourcharacter");
 
 			characterChosen = true;
 			
@@ -70,14 +73,27 @@ $(document).ready(function () {
 
 	});
 
+	$('#restartGame').on('click', function(){
+		location.reload();
+	})
+
+
 	$('#attack_button').on('click',function (){
 
 		if($('#chosen').find("img").length < 1) {
+			if( true ) {$('#notification1').text("You havent picked your character!");}
+
+			// else if ( false ) {$('#notification1').text(""); }
+			
 			return;
 		}
 		if($('#enemy').find("img").length < 1) {
-			return;
+			if( true ) {$('#notification2').text("You havent picked your challenger!");}
+
+			// else if (false) {$('#notification2').text(""); }
+			
 		}
+
 
 		if(!attacker) {
 
@@ -96,24 +112,39 @@ $(document).ready(function () {
 
 		battleInit();
 
+			var audioElement = document.createElement('audio');
+	        audioElement.setAttribute('src', 'assets/sounds/attack.wav');
+
+	        audioElement.play();
+
+
 
 
 	})
 
 	function battleEnd() {
-		if(defender.health <= 0){
+		if(defender.health <= 0 && attacker.health > 0){
+
 		console.log ("You Win, Pick Your Next Opponent");
+
 		defender = null;
 		$("#enemy").find("img").remove();
 		enemyChosen = false;
 		if($("#available").find("img").length == 0) {
-			$('#message').text("You Won!");
+			$('#message').text("Congratulations! You Won! Press Restart to Play Again");
+
+			var audioElement = document.createElement('audio');
+	        audioElement.setAttribute('src', 'assets/sounds/gamemusic.mp3');
+	        audioElement.play();
 
 		}
 
 		}
 		else if(attacker.health <= 0){
 			console.log ("You Lose, Press Restart to Try Again");
+			$('#message').text("Game Over You LOSE! Press Restart to Play Again");
+				
+			
 		}
 	}
 
@@ -125,60 +156,23 @@ $(document).ready(function () {
 			attacker.health = attacker.health-defender.counter;
 			attacker.attacking = attacker.attacking + attacker.attackBonus;
 			$('#chosenstatus').text("Health "+attacker.health);
+			$('#playbyplay').text("You attacked for " + attacker.attacking + " Challenger attacked back for " + defender.counter);
 			$('#challengerstatus').text("Health "+defender.health);
 			console.log(attacker.health + "attacker health");
 			console.log(defender.health + "defender health");
 			console.log(attacker.attacking + "attacker attack");
 			battleEnd();
 		}
+		// if (attacker.health <=0 && defender.health <=0) {
+		// 	console.log ("You Lose, Press Restart to Try Again");
+		// 	$('#message').text("Game Over You LOSE! Press Restart to Play Again");
+		// }
 
 
 	}
 
 
 		
-	});
+});
 
 	
-// var opponentsBeat = [];
-
-
-// function winning (opponent) {
-// 	oppentsBeat.push(opponent)
-// }
-
-
-// function initBattle (attacker, defender) {
-// 	loop through oppentsBeat
-// 	check if defender is in there
-// 	if he is get another char
-	
-// 	else 
-// 	attack (attacker, defender)
-// }
-
-// function attack (attacker, defender) {
-// 	var health = char[defender].health;
-// 	var attacking = char[attacker].attacking
-// 	console.log('char before attack', char)
-// 	console.log('____________________________')
-// 	console.log('att', attacker)
-// 	console.log('def', defender)
-// 	console.log('____________________________')
-// 	if(defender life is not === 0) {
-// 		char[defender].health = health - attacking
-// 		console.log('char after attack', char)		
-// 	} else {
-// 		defender has no health
-// 		winning(defender)
-// 	}
-// }
-
-// attack('pikachu', 'charmander');
-// attack('pikachu', 'charmander');
-
-
-// $(document).ready(function () {
-// 	$(button).on(click, function () {
-// 		char.pikachu.attacking
-// 		a()
