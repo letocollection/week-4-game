@@ -63,10 +63,8 @@ $(document).ready(function () {
 			$(this).appendTo("#chosen");
 
 			characterChosen = true;
-
 			
 		}
-
 
 
 
@@ -127,6 +125,7 @@ $(document).ready(function () {
 			attacker.health = attacker.health-defender.counter;
 			attacker.attacking = attacker.attacking + attacker.attackBonus;
 			$('#chosenstatus').text("Health "+attacker.health);
+			$('#challengerstatus').text("Health "+defender.health);
 			console.log(attacker.health + "attacker health");
 			console.log(defender.health + "defender health");
 			console.log(attacker.attacking + "attacker attack");
@@ -137,20 +136,7 @@ $(document).ready(function () {
 	}
 
 
-		// if (characterChosen = true) 	
-
-
-
-
-
-		// else if ('#char2') {$('#char2').appendTo("#chosen");}
-		// else if ('#char3') {$('#char3').appendTo("#chosen");}
-		// else {$('#char4').appendTo("#chosen");}
-		// // $("#char1").appendTo("#chosen");
-		// characterChosen = true;
-
-
-
+		
 	});
 
 	
