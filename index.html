@@ -15,24 +15,28 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="text-center"><strong>Pokemon RPG</strong></h1>
+			<div id="message"></div>
 		</div>	
-		<div class="row">
-			<div class="pokemon col-md-3" id=char1>
+		<div class="row" id="available">
+			<div class="pokemon col-md-3" id="char1">
 			</div>
-			<div class="pokemon col-md-3" id=char2>
+			<div class="pokemon col-md-3" id="char2">
 			</div>
-			<div class="pokemon col-md-3" id=char3>
+			<div class="pokemon col-md-3" id="char3">
 			</div>
-			<div class="pokemon col-md-3" id=char4>
+			<div class="pokemon col-md-3" id="char4">
+			</div>
 		</div>
 		<div class="row">
-			<div class="character col-lg-6" id=chosen>
+			<div class="character col-lg-6" id="chosen">
 				<h2>Your Character</h2>
+				<h3 id="chosenstatus"></h3>
 			</div>
-			<div class="challenger col-lg-6" id=enemy>
+			<div class="challenger col-lg-6" id="enemy">
 				<h2>Your Challenger</h2>
 			</div>
 		</div>	
+		<button id="attack_button">Attack!</button>
 	</div>
 		<script type="text/javascript" src="assets/javascript/game.js" ></script>
 	</div>	

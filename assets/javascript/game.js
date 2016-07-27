@@ -10,73 +10,132 @@ $(document).ready(function () {
 	var char = {
 		pikachu: {
 		attacking: 12,
-		health: 120,
+		attackBonus: 12,
+		health: 500,
 		counter: 23
 		},
+
 		charmander: {
 		attacking: 12,
+		attackBonus: 12,
 		health: 100,
 		counter: 23
+
 		},
 		squirtle: {
 		attacking: 12,
+		attackBonus: 12,
 		health: 150,
 		counter: 23
 		},
 		mew: {
 		attacking: 12,
+		attackBonus: 12,
 		health: 180,
 		counter: 23
 		}	
 	
-	}
 
+	}
+	
 	$('#char1').prepend('<img id="pikachu" src="assets/images/pikachu.png">');
 	$('#char2').prepend('<img id="charmander" src="assets/images/charmander.png">');
 	$('#char3').prepend('<img id="squirtle" src="assets/images/squirtle.png">');
 	$('#char4').prepend('<img id="mew" src="assets/images/mew.png">');
-
-	// $('.pokemon').on('click', function () {
-
-		$('#char1').on('click', function(){
-			$("#char1").appendTo("#chosen");
-			attacker = 'pikachu';
-			console.log("attacker")
-			characterChosen = true;})
-
-		$('#char2').on('click', function(){
-			$("#char2").appendTo("#chosen");
-			characterChosen = true;})	
-
-		$('#char3').on('click', function(){
-			$("#char3").appendTo("#chosen");
-			characterChosen = true;})
-
-		$('#char4').on('click', function(){
-			$("#char4").appendTo("#chosen");
-			characterChosen = true;})	
-
+	
+		
+		
 	// });	
-	$('.pokemon').on('click',function (){
-		if(characterChosen = true) {
-			$('#char1').on('click', function(){
-				$("#char1").appendTo("#enemy");
-				enemyChosen = true;})
+	$('#available .pokemon').on('click',function (){
+		if($(this).data("chosen")) {return;}
+		
 
-			$('#char2').on('click', function(){
-				$("#char2").appendTo("#enemy");
-				enemyChosen = true;})	
+		if(characterChosen == true && enemyChosen == false){
+			$(this).data("chosen", true);
+			$(this).appendTo("#enemy");
+			
+			enemyChosen = true;
+			
+		}
 
-			$('#char3').on('click', function(){
-				$("#char3").appendTo("#enemy");
-				enemyChosen = true;})
+		else if (characterChosen == false) {
+			$(this).data("chosen", true);
+			$(this).appendTo("#chosen");
 
-			$('#char4').on('click', function(){
-				$("#char4").appendTo("#enemy");
-				enemyChosen = true;})	
+			characterChosen = true;
+
+			
+		}
+
+
+
+
+	});
+
+	$('#attack_button').on('click',function (){
+
+		if($('#chosen').find("img").length < 1) {
+			return;
+		}
+		if($('#enemy').find("img").length < 1) {
+			return;
+		}
+
+		if(!attacker) {
+
+		var currentCharacter = $("#chosen").find("img").first().attr("id");
+		attacker = char[currentCharacter];
+		console.log(attacker);
+		console.log(currentCharacter);
+		}
+
+		if(!defender) {
+		var currentEnemy = $("#enemy").find("img").first().attr("id");
+		defender = char[currentEnemy];
+		console.log(defender);
+		console.log(currentEnemy);
+		}
+
+		battleInit();
+
+
+
+	})
+
+	function battleEnd() {
+		if(defender.health <= 0){
+		console.log ("You Win, Pick Your Next Opponent");
+		defender = null;
+		$("#enemy").find("img").remove();
+		enemyChosen = false;
+		if($("#available").find("img").length == 0) {
+			$('#message').text("You Won!");
 
 		}
-	})
+
+		}
+		else if(attacker.health <= 0){
+			console.log ("You Lose, Press Restart to Try Again");
+		}
+	}
+
+	function battleInit() {
+
+
+		if (attacker.health > 0 && defender.health > 0) {
+			defender.health = defender.health-attacker.attacking;
+			attacker.health = attacker.health-defender.counter;
+			attacker.attacking = attacker.attacking + attacker.attackBonus;
+			$('#chosenstatus').text("Health "+attacker.health);
+			console.log(attacker.health + "attacker health");
+			console.log(defender.health + "defender health");
+			console.log(attacker.attacking + "attacker attack");
+			battleEnd();
+		}
+
+
+	}
+
 
 		// if (characterChosen = true) 	
 
@@ -92,7 +151,7 @@ $(document).ready(function () {
 
 
 
-	})
+	});
 
 	
 // var opponentsBeat = [];
