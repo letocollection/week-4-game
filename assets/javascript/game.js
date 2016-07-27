@@ -12,13 +12,13 @@ $(document).ready(function () {
 		attacking: 12,
 		attackBonus: 12,
 		health: 150,
-		counter: 15
+		counter: 25
 		},
 
 		charmander: {
 		attacking: 35,
 		attackBonus: 35,
-		health: 100,
+		health: 120,
 		counter: 15
 
 		},
@@ -32,7 +32,7 @@ $(document).ready(function () {
 		mew: {
 		attacking: 12,
 		attackBonus: 25,
-		health: 150,
+		health: 145,
 		counter: 18
 		}	
 	
